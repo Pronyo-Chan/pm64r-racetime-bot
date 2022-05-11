@@ -138,7 +138,7 @@ class RandoHandler(RaceHandler):
             return
 
         await self.roll(
-            preset=args[0] if args else 'Standard Race',
+            preset=args[0] if args else 'race',
             is_spoiler_seed=is_spoiler_seed,
             reply_to=reply_to,
         )
