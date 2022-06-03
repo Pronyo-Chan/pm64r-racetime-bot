@@ -29,8 +29,10 @@ def main():
     secret_manager = secretmanager.SecretManagerServiceClient()
     client_id = secret_manager.access_secret_version(request={"name": "projects/4264716284/secrets/racetime-client-id/versions/1"}).payload.data.decode("UTF-8")
     client_secret = secret_manager.access_secret_version(request={"name": "projects/4264716284/secrets/racetime-client-secret/versions/1"}).payload.data.decode("UTF-8")
+    api_key = secret_manager.access_secret_version(request={"name": "projects/4264716284/secrets/api-key/versions/1"}).payload.data.decode("UTF-8")
 
-    inst = RandoBot(
+    inst = RandoBot(        
+        api_key=api_key,
         category_slug="pm64r",
         client_id=client_id,
         client_secret=client_secret,

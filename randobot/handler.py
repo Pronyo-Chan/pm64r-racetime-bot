@@ -32,6 +32,13 @@ class RandoHandler(RaceHandler):
             self.state['locked'] = False
         if 'fpa' not in self.state:
             self.state['fpa'] = False
+    
+    async def end(self):
+        """
+        Called when race ends or is cancelled. The API is called to reveal the spoiler log.
+        """
+        if "seed_id" in self.state:
+            self.pm64r.reveal_spoiler_log(seed_id=self.state['seed_id'])
 
     @monitor_cmd
     async def ex_lock(self, args, message):

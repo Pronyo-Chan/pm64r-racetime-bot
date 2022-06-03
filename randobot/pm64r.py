@@ -10,9 +10,11 @@ class PM64R:
     seed_url = 'https://pm64randomizer.com/seed?id='
     seed_post_endpoint = 'https://paper-mario-randomizer-server.ue.r.appspot.com/randomizer_preset'
     preset_endpoint = 'https://paper-mario-randomizer-server.ue.r.appspot.com/preset-names'
+    reveal_spoiler_endpoint = 'https://paper-mario-randomizer-server.ue.r.appspot.com/reveal_spoiler'
 
-    def __init__(self):
+    def __init__(self, api_key):
         self.presets = self.load_presets()
+        self.api_key = api_key
 
     def load_presets(self):
         """
@@ -31,3 +33,13 @@ class PM64R:
             headers={'Content-Type': 'application/json'}
         ).json()
         return id
+    
+    def reveal_spoiler_log(self, seed_id):
+        """
+        Makes the spoiler log available for specified seed. To be called at end of race.
+        """
+        requests.post(
+            url=self.reveal_spoiler_endpoint,
+            json={"api_key": f"{self.api_key}", "seed_id": seed_id},
+            headers={'Content-Type': 'application/json'}
+        )

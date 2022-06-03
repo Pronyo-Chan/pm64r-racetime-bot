@@ -9,9 +9,9 @@ class RandoBot(Bot):
     """
     RandoBot base class.
     """
-    def __init__(self, *args, **kwargs):
+    def __init__(self, api_key, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.pm64r = PM64R()
+        self.pm64r = PM64R(api_key)
 
     def get_handler_class(self):
         return RandoHandler
