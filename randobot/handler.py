@@ -167,12 +167,13 @@ class RandoHandler(RaceHandler):
 
         seed_id = self.pm64r.roll_seed(preset, is_spoiler_seed)
         seed_uri = f"{self.pm64r.seed_url}{seed_id}"
+        seed_hash = self.pm64r.get_seed_hash(seed_id)
 
         await self.send_message(
             '%(reply_to)s, here is your seed: %(seed_uri)s'
             % {'reply_to': reply_to or 'Okay', 'seed_uri': seed_uri}
         )
-        await self.set_bot_raceinfo(seed_uri)
+        await self.set_bot_raceinfo(f'{seed_uri}\n({seed_hash})')
 
         self.state['seed_id'] = seed_id
         self.state['status_checks'] = 0
