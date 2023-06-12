@@ -21,7 +21,7 @@ class RandoHandler(RaceHandler):
                 'Welcome to PM64R! Create a seed with !seed <preset>'
             )
             await self.send_message(
-                'If no preset is selected, weekly settings will be used. '
+                'If no preset is selected, Standard Race (S1) will be used. '
                 'Use !spoilerseed to generate a seed with a spoiler log.'
             )
             await self.send_message(
@@ -145,7 +145,7 @@ class RandoHandler(RaceHandler):
             return
 
         await self.roll(
-            preset=args[0] if args else 'race',
+            preset=args[0] if args else 's1',
             is_spoiler_seed=is_spoiler_seed,
             reply_to=reply_to,
         )
