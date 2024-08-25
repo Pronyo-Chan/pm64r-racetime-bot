@@ -178,8 +178,6 @@ class RandoHandler(RaceHandler):
         self.state['seed_id'] = seed_id
         self.state['status_checks'] = 0
 
-        await self.check_seed_status()
-
     async def send_presets(self):
         """
         Send a list of known presets to the race room.
